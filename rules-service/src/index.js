@@ -24,7 +24,7 @@ app.post("/rules/evaluate", (req, res) => {
 
   // Минимальная логика “как будто правила”
   if (facts?.sanctions?.listed === true) triggered.push({ id: "R1", severity: "HIGH" });
-  if ((facts?.registry?.ageYears ?? 999) < 1) triggered.push({ id: "R2", severity: "MEDIUM" });
+  if ((facts?.corp?.ageYears ?? 999) < 1) triggered.push({ id: "R2", severity: "MEDIUM" });
   if (facts?.egrul?.uboMissing === true) triggered.push({ id: "R3", severity: "MEDIUM" });
 
   res.json({ triggeredRules: triggered, rulesVersion: data.version });

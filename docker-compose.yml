@@ -93,12 +93,12 @@ services:
       - "8086:8086"
     environment:
       CRM_URL: "http://crm:9001"
-      REGISTRY_URL: "http://registry:9002"
+      CORP_URL: "http://corp:9002"
       EGRUL_URL: "http://egrul:9003"
       SANCTIONS_URL: "http://sanctions:9004"
     depends_on:
       - crm
-      - registry
+      - corp
       - egrul
       - sanctions
 
@@ -113,8 +113,8 @@ services:
     ports:
       - "9001:9001"
 
-  registry:
-    build: ./mocks/registry
+  corp:
+    build: ./mocks/corp
     ports:
       - "9002:9002"
 
