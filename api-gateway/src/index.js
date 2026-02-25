@@ -131,5 +131,5 @@ app.delete("/scoring-runs/:id", authMiddleware, async (req, res) => {
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
-
+app.get("/health", (req, res) => res.status(200).send("ok"));
 app.listen(8081, () => console.log("API Gateway running on 8081"));

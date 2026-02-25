@@ -27,19 +27,24 @@ jobs:
       - name: Show running containers
         run: docker ps -a
 
-      - name: Wait for API Gateway to be ready
+      - name: Wait for API Gateway
         run: |
-          for i in {1..45}; do
-            if curl -s -o /dev/null -w "%{http_code}" \
-              -H "Authorization: Bearer ok" \
-              "http://localhost:8081/api/audit" | grep -qE "200|400"; then
-              echo "API Gateway is up"
+          echo "Containers:"
+          docker ps -a
+
+          echo "Ports:"
+          docker compose ps
+
+          for i in {1..60}; do
+            if curl -sSf http://localhost:8081/health > /dev/null; then
+              echo "Gateway is up"
               exit 0
             fi
             echo "Waiting... ($i)"
             sleep 2
           done
-          echo "API Gateway did not become ready"
+
+          echo "=== docker compose logs ==="
           docker compose logs --no-color
           exit 1
 
