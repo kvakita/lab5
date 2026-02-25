@@ -1,5 +1,5 @@
 {
-  "name": "corp-registry-mock",
+  "name": "corp-registry",
   "version": "1.0.0",
   "main": "src/index.js",
   "type": "commonjs",

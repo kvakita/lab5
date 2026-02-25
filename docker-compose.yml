@@ -32,7 +32,7 @@ services:
     environment:
       SCORING_URL: "http://scoring-service:8082"
       AUDIT_URL: "http://audit-service:8084"
-      OIDC_INTROSPECT_URL: "http://sso-mock:9000/introspect"
+      OIDC_INTROSPECT_URL: "http://sso:9000/introspect"
     depends_on:
       - scoring-service
       - audit-service
@@ -92,13 +92,13 @@ services:
     ports:
       - "8086:8086"
     environment:
-      CRM_URL: "http://crm-mock:9001"
-      REGISTRY_URL: "http://registry-mock:9002"
-      EGRUL_URL: "http://egrul-mock:9003"
-      SANCTIONS_URL: "http://sanctions-mock:9004"
+      CRM_URL: "http://crm:9001"
+      REGISTRY_URL: "http://registry:9002"
+      EGRUL_URL: "http://egrul:9003"
+      SANCTIONS_URL: "http://sanctions:9004"
     depends_on:
       - crm
-      - registry-mock
+      - registry
       - egrul
       - sanctions
 
