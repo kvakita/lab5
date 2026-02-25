@@ -21,7 +21,7 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs",
+          "raw": "{{baseUrl}}/scoring-runs",
           "protocol": "http",
           "host": [
             "127",
@@ -52,7 +52,7 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs",
+          "raw": "{{baseUrl}}/scoring-runs",
           "protocol": "http",
           "host": [
             "127",
@@ -106,7 +106,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/result",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf/result",
           "protocol": "http",
           "host": [
             "127",
@@ -130,7 +130,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/result",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf/result",
           "protocol": "http",
           "host": [
             "127",
@@ -154,7 +154,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/rules",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf/rules",
           "protocol": "http",
           "host": [
             "127",
@@ -178,7 +178,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/rules",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf/rules",
           "protocol": "http",
           "host": [
             "127",
@@ -202,7 +202,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/service-calls",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf/service-calls",
           "protocol": "http",
           "host": [
             "127",
@@ -226,7 +226,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/service-calls",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf/service-calls",
           "protocol": "http",
           "host": [
             "127",
@@ -259,7 +259,7 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf",
           "protocol": "http",
           "host": [
             "127",
@@ -291,7 +291,7 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf",
           "protocol": "http",
           "host": [
             "127",
@@ -314,7 +314,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf",
           "protocol": "http",
           "host": [
             "127",
@@ -337,7 +337,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "raw": "{{baseUrl}}/scoring-runs/sr_20260204_d0a4cf",
           "protocol": "http",
           "host": [
             "127",
@@ -360,7 +360,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/scoring-runs",
+          "raw": "{{baseUrl}}/scoring-runs",
           "protocol": "http",
           "host": [
             "127",
@@ -373,7 +373,7 @@
             "scoring-runs"
           ]
         },
-        "description": "Generated from cURL: curl -X GET \"http://127.0.0.1:8000/scoring-runs\""
+        "description": "Generated from cURL: curl -X GET \"{{baseUrl}}/scoring-runs\""
       },
       "response": []
     }
