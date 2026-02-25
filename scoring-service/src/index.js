@@ -71,7 +71,39 @@ app.get("/scoring/results", async (req, res) => {
     : await pool.query("SELECT * FROM scoring_results ORDER BY created_at DESC LIMIT 50");
   res.json(r.rows);
 });
+// список запусков (как сейчас /scoring/results, но оставим оба)
+app.get("/scoring/runs", async (req, res) => {
+  const r = await pool.query("SELECT * FROM scoring_results ORDER BY created_at DESC LIMIT 50");
+  res.json(r.rows);
+});
 
+app.get("/scoring/runs/:id", async (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id)) return res.status(400).json({ error: "invalid id" });
+
+  const r = await pool.query("SELECT * FROM scoring_results WHERE id=$1", [id]);
+  if (r.rows.length === 0) return res.status(404).json({ error: "not found" });
+  res.json(r.rows[0]);
+});
+
+app.get("/scoring/runs/:id/result", async (req, res) => {
+  // то же самое что /scoring/runs/:id
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id)) return res.status(400).json({ error: "invalid id" });
+
+  const r = await pool.query("SELECT * FROM scoring_results WHERE id=$1", [id]);
+  if (r.rows.length === 0) return res.status(404).json({ error: "not found" });
+  res.json(r.rows[0]);
+});
+
+app.get("/scoring/runs/:id/rules", async (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id)) return res.status(400).json({ error: "invalid id" });
+
+  const r = await pool.query("SELECT triggered_rules FROM scoring_results WHERE id=$1", [id]);
+  if (r.rows.length === 0) return res.status(404).json({ error: "not found" });
+  res.json(r.rows[0].triggered_rules);
+});
 app.listen(8082, async () => {
   try {
     amqp = await connectAmqp();

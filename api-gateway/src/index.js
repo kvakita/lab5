@@ -46,7 +46,13 @@ async function authMiddleware(req, res, next) {
 // 1️⃣ Создать скоринг
 app.post("/scoring-runs", authMiddleware, async (req, res) => {
   try {
-    const r = await axios.post(`${SCORING_URL}/scoring/run`, req.body);
+    const body = req.body || {};
+    // Postman шлёт target.{id,type,name}. Берём id как inn (для лабы это ок)
+    const inn = String(body?.inn || body?.target?.id || "").trim();
+
+    if (!inn) return res.status(400).json({ error: "inn is required (or target.id)" });
+
+    const r = await axios.post(`${SCORING_URL}/scoring/run`, { inn });
     res.status(201).json(r.data);
   } catch (e) {
     res.status(500).json({ error: "Failed to create scoring run" });
@@ -55,52 +61,26 @@ app.post("/scoring-runs", authMiddleware, async (req, res) => {
 
 // 2️⃣ Получить список
 app.get("/scoring-runs", authMiddleware, async (req, res) => {
-  try {
-    const r = await axios.get(`${SCORING_URL}/scoring/results`, {
-      params: req.query
-    });
-    res.json(r.data);
-  } catch (e) {
-    res.status(500).json({ error: "Failed to get scoring runs" });
-  }
+  const r = await axios.get(`${SCORING_URL}/scoring/runs`);
+  res.json(r.data);
 });
 
 // 3️⃣ Получить конкретный run
 app.get("/scoring-runs/:id", authMiddleware, async (req, res) => {
-  try {
-    const r = await axios.get(`${SCORING_URL}/scoring/results`, {
-      params: { id: req.params.id }
-    });
-    res.json(r.data);
-  } catch (e) {
-    res.status(404).json({ error: "Run not found" });
-  }
+  const r = await axios.get(`${SCORING_URL}/scoring/runs/${req.params.id}`);
+  res.json(r.data);
 });
 
 // 4️⃣ Получить результат
 app.get("/scoring-runs/:id/result", authMiddleware, async (req, res) => {
-  try {
-    const r = await axios.get(`${SCORING_URL}/scoring/results`, {
-      params: { id: req.params.id }
-    });
-    res.json(r.data);
-  } catch (e) {
-    res.status(404).json({ error: "Result not found" });
-  }
+  const r = await axios.get(`${SCORING_URL}/scoring/runs/${req.params.id}/result`);
+  res.json(r.data);
 });
 
 // 5️⃣ Получить правила
 app.get("/scoring-runs/:id/rules", authMiddleware, async (req, res) => {
-  try {
-    const r = await axios.get(`${SCORING_URL}/scoring/results`, {
-      params: { id: req.params.id }
-    });
-
-    const data = r.data;
-    res.json(data.triggeredRules || []);
-  } catch (e) {
-    res.status(404).json({ error: "Rules not found" });
-  }
+  const r = await axios.get(`${SCORING_URL}/scoring/runs/${req.params.id}/rules`);
+  res.json(r.data);
 });
 
 // 6️⃣ Получить вызовы сервисов (из audit)
