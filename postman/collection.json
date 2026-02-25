@@ -1,0 +1,395 @@
+{
+  "info": {
+    "_postman_id": "431c4d17-2b1c-49f8-8de3-f0d0210287c9",
+    "name": "scoring_api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "34267658"
+  },
+  "item": [
+    {
+      "name": "Запрос 1.1 — успешный запуск скоринга (branch) Copy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"target\": {\n    \"type\": \"branch\",\n    \"id\": \"BR-001\",\n    \"name\": \"Amsterdam Branch\"\n  }\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 1.2 — успешный запуск скоринга (counterparty)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"target\": {\n    \"type\": \"branch\",\n    \"id\": \"BR-001\",\n    \"name\": \"Amsterdam Branch\"\n  }\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 2.1 — получение списка всех запусков",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 2.2 — фильтрация по типу и идентификатору",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 3.1 — получение существующего запуска",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 3.2 — запрос несуществующего runId",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 4.1 — полный результат скоринга",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/result",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf",
+            "result"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 4.2 — результат без вызванных сервисов",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/result",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf",
+            "result"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 5.1 — получение списка сработавших правил",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/rules",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf",
+            "rules"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 5.2 — правила для несуществующего запуска",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/rules",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf",
+            "rules"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 6.1 — получение вызванных сервисов",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/service-calls",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf",
+            "service-calls"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 6.2 — запрос для несуществующего runId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf/service-calls",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf",
+            "service-calls"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 7.1 — soft-delete через PUT",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"deleted\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 7.2 — попытка изменить score завершённого запуска",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"deleted\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 8.1 — удаление существующего запуска",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 8.2 — повторное удаление (идемпотентность)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs/sr_20260204_d0a4cf",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs",
+            "sr_20260204_d0a4cf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Запрос 2.1 — получение списка всех запусков",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/scoring-runs",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "scoring-runs"
+          ]
+        },
+        "description": "Generated from cURL: curl -X GET \"http://127.0.0.1:8000/scoring-runs\""
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "lastRunIds",
+      "value": ""
+    },
+    {
+      "key": "lastSuccessfulRunId",
+      "value": ""
+    },
+    {
+      "key": "lastDeletedRunId",
+      "value": ""
+    }
+  ]
+}
