@@ -1,0 +1,129 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: scoring
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  broker:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  web-ui:
+    build: ./web-ui
+    ports:
+      - "8080:80"
+    depends_on:
+      - api-gateway
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8081:8081"
+    environment:
+      SCORING_URL: "http://scoring-service:8082"
+      AUDIT_URL: "http://audit-service:8084"
+      OIDC_INTROSPECT_URL: "http://sso-mock:9000/introspect"
+    depends_on:
+      - scoring-service
+      - audit-service
+      - sso-mock
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8081/api/audit"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  scoring-service:
+    build: ./scoring-service
+    ports:
+      - "8082:8082"
+    environment:
+      DATA_AGG_URL: "http://data-aggregation:8086"
+      RULES_URL: "http://rules-service:8083"
+      DB_HOST: "db"
+      DB_PORT: "5432"
+      DB_NAME: "scoring"
+      DB_USER: "user"
+      DB_PASS: "pass"
+      AMQP_URL: "amqp://guest:guest@broker:5672"
+    depends_on:
+      - db
+      - broker
+      - data-aggregation
+      - rules-service
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8082/scoring/results"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  rules-service:
+    build: ./rules-service
+    ports:
+      - "8083:8083"
+
+  audit-service:
+    build: ./audit-service
+    ports:
+      - "8084:8084"
+    environment:
+      DB_HOST: "db"
+      DB_PORT: "5432"
+      DB_NAME: "scoring"
+      DB_USER: "user"
+      DB_PASS: "pass"
+      AMQP_URL: "amqp://guest:guest@broker:5672"
+    depends_on:
+      - db
+      - broker
+
+  data-aggregation:
+    build: ./data-aggregation
+    ports:
+      - "8086:8086"
+    environment:
+      CRM_URL: "http://crm-mock:9001"
+      REGISTRY_URL: "http://registry-mock:9002"
+      EGRUL_URL: "http://egrul-mock:9003"
+      SANCTIONS_URL: "http://sanctions-mock:9004"
+    depends_on:
+      - crm-mock
+      - registry-mock
+      - egrul-mock
+      - sanctions-mock
+
+  # Внешние системы как контейнеры-моки
+  sso-mock:
+    build: ./mocks/sso
+    ports:
+      - "9000:9000"
+
+  crm-mock:
+    build: ./mocks/crm
+    ports:
+      - "9001:9001"
+
+  registry-mock:
+    build: ./mocks/registry
+    ports:
+      - "9002:9002"
+
+  egrul-mock:
+    build: ./mocks/egrul
+    ports:
+      - "9003:9003"
+
+  sanctions-mock:
+    build: ./mocks/sanctions
+    ports:
+      - "9004:9004"

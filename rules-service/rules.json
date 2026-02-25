@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "rules": [
+    { "id": "R1", "name": "Company is in sanctions", "check": "sanctions" },
+    { "id": "R2", "name": "Company is too young", "check": "young" },
+    { "id": "R3", "name": "No beneficial owner", "check": "ubo_missing" }
+  ]
+}

@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS scoring_results (
+  id SERIAL PRIMARY KEY,
+  inn VARCHAR(12) NOT NULL,
+  risk_level VARCHAR(10) NOT NULL,
+  triggered_rules JSONB NOT NULL,
+  facts JSONB NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS audit_log (
+  id SERIAL PRIMARY KEY,
+  event_type VARCHAR(50) NOT NULL,
+  inn VARCHAR(12),
+  payload JSONB NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
