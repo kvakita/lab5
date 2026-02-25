@@ -60,7 +60,7 @@
             "0",
             "1"
           ],
-          "port": "80",
+          "port": "8081",
           "path": [
             "scoring-runs"
           ]
