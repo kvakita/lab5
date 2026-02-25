@@ -103,27 +103,27 @@ services:
       - sanctions
 
   # Внешние системы как контейнеры-моки
-  sso-mock:
+  sso:
     build: ./mocks/sso
     ports:
       - "9000:9000"
 
-  crm-mock:
+  crm:
     build: ./mocks/crm
     ports:
       - "9001:9001"
 
-  registry-mock:
+  registry:
     build: ./mocks/registry
     ports:
       - "9002:9002"
 
-  egrul-mock:
+  egrul:
     build: ./mocks/egrul
     ports:
       - "9003:9003"
 
-  sanctions-mock:
+  sanctions:
     build: ./mocks/sanctions
     ports:
       - "9004:9004"
