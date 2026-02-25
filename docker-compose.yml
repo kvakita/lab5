@@ -36,7 +36,7 @@ services:
     depends_on:
       - scoring-service
       - audit-service
-      - sso-mock
+      - sso
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:8081/api/audit"]
       interval: 5s
@@ -97,10 +97,10 @@ services:
       EGRUL_URL: "http://egrul-mock:9003"
       SANCTIONS_URL: "http://sanctions-mock:9004"
     depends_on:
-      - crm-mock
+      - crm
       - registry-mock
-      - egrul-mock
-      - sanctions-mock
+      - egrul
+      - sanctions
 
   # Внешние системы как контейнеры-моки
   sso-mock:
